@@ -1,27 +1,30 @@
 <template>
-  <div id="app">
-        <div id="description">
-            <div>
-                <h1>Login</h1>
-                <p>By logging in, you agree to the ridiculously long terms that you didn't bother to read.</p>
-            </div>
-        </div>
-        <div id="login">
-            <div class="wrapper">
-                <label for="email">Email</label>
-                <input id="email" type="text" placeholder="Enter email" v-model="email">
-            </div>
-            <div class="wrapper">
-                <div class="holder">
-                    <label for="password">Password</label>
-                    <div v-on:click="showPassword = true" v-show="showPassword === false"><i class="fas fa-eye"></i></div>
-                    <div v-show="showPassword === true" v-on:click="showPassword = false"><i class="fas fa-eye-slash"></i></div>
+    <div>
+        <div id="app">
+            <div id="description">
+                <div>
+                    <h1>Login</h1>
+                    <p>By logging in, you agree to the ridiculously long terms that you didn't bother to read.</p>
                 </div>
-                <input class="password" type="password" placeholder="Enter password" v-model="password" v-show="showPassword === false">
-                <input class="password" type="text" placeholder="Enter password" v-model="password" v-show="showPassword === true">
             </div>
-            <div id="button" v-on:click="validateCredentials"><span>Log in</span></div>
+            <div id="login">
+                <div class="wrapper">
+                    <label for="email">Email</label>
+                    <input id="email" type="text" placeholder="Enter email" v-model="email">
+                </div>
+                <div class="wrapper">
+                    <div class="holder">
+                        <label for="password">Password</label>
+                        <div v-on:click="showPassword = true" v-show="showPassword === false"><i class="fas fa-eye"></i></div>
+                        <div v-show="showPassword === true" v-on:click="showPassword = false"><i class="fas fa-eye-slash"></i></div>
+                    </div>
+                    <input class="password" type="password" placeholder="Enter password" v-model="password" v-show="showPassword === false">
+                    <input class="password" type="text" placeholder="Enter password" v-model="password" v-show="showPassword === true">
+                </div>
+                <div id="button" v-on:click="validateCredentials"><span>Log in</span></div>
+            </div>
         </div>
+        <router-view></router-view>
     </div>
 </template>
 
@@ -47,12 +50,13 @@
                     alert("Password is required");
                     return false;
                 } else {
-                    alert("Success");
+                    this.$router.push({ path: '/cars' });
+                    document.getElementById("app").style.display = "none";
+
                 } 
             }
         }
-
-  }
+    }
 
 </script>
 
